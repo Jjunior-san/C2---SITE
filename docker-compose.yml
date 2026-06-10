@@ -37,11 +37,10 @@ services:
       - db
 
   nginx:
-    image: nginx:1.25-alpine
+    build: ./nginx
     container_name: c2sistemas_nginx
     restart: unless-stopped
     volumes:
-      - ./nginx:/etc/nginx/conf.d:ro
       # Montar os mesmos volumes do Django para que o Nginx possa servir as imagens e vídeos diretamente
       - static_volume:/app/static
       - media_volume:/app/media
