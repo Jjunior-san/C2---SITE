@@ -41,7 +41,7 @@ services:
     container_name: c2sistemas_nginx
     restart: unless-stopped
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx:/etc/nginx/conf.d:ro
       # Montar os mesmos volumes do Django para que o Nginx possa servir as imagens e vídeos diretamente
       - static_volume:/app/static
       - media_volume:/app/media
