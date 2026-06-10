@@ -1,0 +1,37 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Software & Sites | C² Sistemas{% endblock %}
+
+{% block content %}
+<div class='main-content-area'>
+  <section class="services-details">
+    <div class="post-card">
+      <div class="icon-box">
+        <i class="fas fa-code" style="color: var(--primary-color);"></i>
+      </div>
+
+      <h3 class="post-title">Software &amp; Sites</h3>
+      <div class="post-body">
+        <p>
+          Criamos soluções sob medida para empresas e órgãos públicos: <b>STA, SGEO, SHP, SGESTAO</b>,
+          além do <b>desenvolvimento de sites</b> rápidos, responsivos e prontos para converter visitantes em clientes.
+        </p>
+
+        <ul style="color: #555555; margin-left: 1.5rem; margin-top: 1rem;">
+          <li><b>STA - Sistema de Triagem e Atendimento</b> (painel, triagem, guichês e relatórios) <i><a href="{% url 'dynamic_page' slug='updates-sta' %}">versões</a></i></li>
+          <li><b>SGEO - Sistema de Georreferenciamento&nbsp;</b><i><a href="{% url 'dynamic_page' slug='updates-sgeo' %}">versões</a></i></li>
+          <li><b>SHP- Sistema de Hotelaria e Pousada&nbsp;<i style="font-weight: 400;"><a href="{% url 'dynamic_page' slug='updates-shp' %}">versões</a></i></b></li>
+          <li><b>SIG - Sistema de Integração de Gestão&nbsp;</b><i><a href="{% url 'dynamic_page' slug='updates-sig' %}">versões</a></i></li>
+          <li><b>Sites institucionais</b> e landing pages (responsivos e otimizados)</li>
+          <li><b>Integrações</b> com WhatsApp, e-mail, APIs e banco de dados (SQL/NoSQL)</li>
+          <li><b>Hospedagem, domínio</b> e manutenção evolutiva do sistema/site</li>
+        </ul>
+
+        <div style="margin-top: 2rem;">
+          <a class="btn-cta" href="{% url 'contato' %}">Solicitar Orçamento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

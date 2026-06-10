@@ -1,0 +1,121 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Suporte / Tutoriais | C² Sistemas{% endblock %}
+
+{% block extra_css %}
+<!-- CSS DO PLYR (Player de Vídeo) -->
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<style>
+  .c2-tutorial-wrap{max-width:920px;margin:0 auto;}
+  .c2-title{font-size:2rem;margin:0 0 .5rem;color:#0f172a;}
+  .c2-sub{color:#556070;line-height:1.6;margin:0 0 1.2rem;}
+  .c2-nav{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 22px;}
+  .c2-chip{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 14px;border:1px solid #e5e7eb;border-radius:999px;
+    text-decoration:none;color:#111827;background:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+  }
+  .c2-chip:hover{border-color:var(--primary-color);transform:translateY(-1px);}
+  .c2-section{margin:26px 0 34px;}
+  .c2-h2{font-size:1.4rem;margin:0 0 .35rem;color:#0f172a;}
+  .c2-p{margin:.2rem 0 1rem;color:#334155;line-height:1.65;}
+  .c2-list{margin:.4rem 0 1.2rem 1.25rem;color:#334155;}
+  .c2-video-card{
+    border-radius:0;overflow:hidden;background:#000;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+  }
+  .c2-caption{margin-top:10px;font-size:.95rem;color:#556070;line-height:1.5;text-align:left;padding:0 6px;}
+  .c2-note{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;color:#334155;}
+  hr.c2-hr{border:0;height:1px;background:#e5e7eb;margin:22px 0;}
+  
+  /* Ajuste no Plyr para ficar com as cores do site */
+  .plyr { --plyr-color-main: var(--primary-color); border-radius: 0; }
+  
+  /* Ajustes do TinyMCE para manter o design */
+  .c2-description-html ul {
+      margin: .4rem 0 1.2rem 1.25rem;
+      color: #334155;
+      list-style-type: disc;
+  }
+  .c2-description-html p {
+      margin: .2rem 0 1rem;
+      color: #334155;
+      line-height: 1.65;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class='main-content-area'>
+  <article class='post-card'>
+    <h1 class='post-title'>Suporte / Tutoriais</h1>
+    <div class='post-body'>
+
+      <div class="c2-tutorial-wrap">
+
+        <p class="c2-sub">
+          Nesta página você encontra vídeos curtos explicando cada módulo do sistema C&#178; (Cliente Cidadão).
+          Clique no módulo desejado e assista ao passo a passo.
+        </p>
+
+        <div class="c2-nav">
+          {% for video in videos %}
+          <a class="c2-chip" href="#{{ video.slug }}"><span>{{ video.icon }}</span> {{ video.short_title }}</a>
+          {% empty %}
+          <span style="color:#666;">Nenhum vídeo cadastrado no painel.</span>
+          {% endfor %}
+        </div>
+
+        <hr class="c2-hr"/>
+
+        {% for video in videos %}
+        <div class="c2-section" id="{{ video.slug }}">
+          <h2 class="c2-h2">{{ video.title }}</h2>
+          
+          <div class="c2-description-html">
+              {{ video.description|safe }}
+          </div>
+
+          {% if video.video_file %}
+          <div class="c2-video-card">
+            <video class="player" playsinline controls {% if video.thumbnail %}data-poster="{{ video.thumbnail.url }}"{% else %}data-poster="{% static 'website/img/capa-placeholder.jpg' %}"{% endif %} style="width: 100%; height: auto;">
+              <source src="{{ video.video_file.url }}" type="video/mp4" />
+            </video>
+          </div>
+          {% else %}
+          <div class="c2-note" style="margin-top: 15px; background: #fff3cd; border-color: #ffe69c; color: #664d03;">
+            <b>Aguardando vídeo:</b> Este módulo ainda não possui um arquivo de vídeo anexado. Faça o upload no painel.
+          </div>
+          {% endif %}
+
+          <div class="c2-caption">
+            <b>Legenda:</b> {{ video.caption }}
+          </div>
+        </div>
+        <hr class="c2-hr"/>
+        {% empty %}
+        <div class="c2-note">
+          <b>Sistema Dinâmico Ativado:</b> Você ainda não fez o upload de nenhum vídeo. Entre no painel de administração (<code>/admin/</code>), vá em <b>Vídeos Tutoriais</b>, clique em Adicionar e eles aparecerão aqui automaticamente com todo o seu design.
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </article>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- JS DO PLYR -->
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const players = Array.from(document.querySelectorAll('.player')).map(p => new Plyr(p, {
+        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+      }));
+    });
+</script>
+{% endblock %}

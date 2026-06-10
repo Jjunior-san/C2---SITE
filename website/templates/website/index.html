@@ -1,0 +1,38 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  <section class='hero'>
+    <div class='hero-content'>
+      <h1 id='heroMainTitle'>{% if home %}{{ home.hero_title_1 }} <span>{{ home.hero_title_highlight }}</span>{% else %}Inovação e Tecnologia para o <span>Seu Negócio</span>{% endif %}</h1>
+      <p>{% if home %}{{ home.hero_subtitle }}{% else %}Oferecendo soluções de tecnologia para otimizar processos e garantir a segurança da sua empresa.{% endif %}</p>
+      <a class='btn-cta' href='{% if home %}{{ home.hero_btn_link }}{% else %}#servicos{% endif %}'>{% if home %}{{ home.hero_btn_text }}{% else %}Ver Nossas Soluções{% endif %}</a>
+    </div>
+  </section>
+
+  <section class='services' id='servicos'>
+    <div class='section-header'>
+      <h2>{% if home %}{{ home.services_title }}{% else %}Nossas Soluções{% endif %}</h2>
+      <p>{% if home %}{{ home.services_subtitle }}{% else %}Especialistas em transformar desafios em resultados digitais.{% endif %}</p>
+    </div>
+
+    <div class='services-grid'>
+      <a class='service-card' href='{% if home %}{{ home.service1_link }}{% else %}{% url "software" %}{% endif %}'>
+        <div class='icon-box'><i class='{% if home %}{{ home.service1_icon }}{% else %}fas fa-code{% endif %}'></i></div>
+        <h3>{% if home %}{{ home.service1_title }}{% else %}Software{% endif %}</h3>
+        <p>{% if home %}{{ home.service1_desc }}{% else %}Sistemas personalizados focados na experiência do Cliente.{% endif %}</p>
+      </a>
+
+      <a class='service-card' href='{% if home %}{{ home.service2_link }}{% else %}{% url "infraestrutura" %}{% endif %}'>
+        <div class='icon-box'><i class='{% if home %}{{ home.service2_icon }}{% else %}fas fa-server{% endif %}'></i></div>
+        <h3>{% if home %}{{ home.service2_title }}{% else %}Infraestrutura &amp; Cloud{% endif %}</h3>
+        <p>{% if home %}{{ home.service2_desc }}{% else %}Segurança e alta disponibilidade para sua rede e servidores.{% endif %}</p>
+      </a>
+
+      <a class='service-card' href='{% if home %}{{ home.service3_link }}{% else %}{% url "marketing" %}{% endif %}'>
+        <div class='icon-box'><i class='{% if home %}{{ home.service3_icon }}{% else %}fas fa-bullhorn{% endif %}'></i></div>
+        <h3>{% if home %}{{ home.service3_title }}{% else %}Marketing{% endif %}</h3>
+        <p>{% if home %}{{ home.service3_desc }}{% else %}Estratégias digitais e presença online para o seu negócio.{% endif %}</p>
+      </a>
+    </div>
+  </section>
+{% endblock %}

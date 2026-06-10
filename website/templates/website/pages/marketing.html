@@ -1,0 +1,35 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Marketing Digital | C² Sistemas{% endblock %}
+
+{% block content %}
+<div class='main-content-area'>
+  <section class="services-details">
+    <div class="post-card">
+      <div class="icon-box">
+        <i class="fas fa-bullhorn" style="color:var(--primary-color);"></i>
+      </div>
+
+      <h3 class="post-title">Marketing</h3>
+      <div class="post-body">
+        <p>
+          Estratégias digitais para fortalecer sua marca, atrair clientes e aumentar vendas com presença online profissional,
+          tráfego qualificado e campanhas bem segmentadas.
+        </p>
+
+        <ul style="margin-left: 1.5rem; margin-top: 1rem; color: #555;">
+          <li>Gestão de redes sociais (conteúdo, calendário e design)</li>
+          <li>Tráfego pago (Google Ads e Meta Ads) com otimização contínua</li>
+          <li>Criação de landing pages e campanhas para captação de leads</li>
+          <li>SEO (posicionamento no Google) e melhoria de performance do site</li>
+          <li>Relatórios e métricas (alcance, leads, CAC, conversão)</li>
+        </ul>
+
+        <div style="margin-top: 2rem;">
+          <a href="{% url 'contato' %}" class="btn-cta">Impulsionar Meu Negócio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

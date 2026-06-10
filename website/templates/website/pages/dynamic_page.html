@@ -1,0 +1,22 @@
+{% extends 'website/base.html' %}
+
+{% block title %}{{ page.title }} | C² Sistemas{% endblock %}
+
+{% block content %}
+<div class='main-content-area'>
+  <section class="services-details">
+    <div class="post-card">
+      {% if page.icon %}
+      <div class="icon-box">
+        <i class="{{ page.icon }}" style="color:var(--primary-color);"></i>
+      </div>
+      {% endif %}
+
+      <h3 class="post-title">{{ page.title }}</h3>
+      <div class="post-body">
+        {{ page.content|safe }}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

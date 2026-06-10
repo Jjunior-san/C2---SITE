@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <title>{% block title %}C² - Sistemas - Soluções em Tecnologia{% endblock %}</title>
+  <meta content='C² - Sistemas. Soluções em tecnologia...' name='description'/>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css' rel='stylesheet'/>
+  {% block extra_css %}{% endblock %}
+  <link href="{% static 'website/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class='logo'>
+      <a href='{% url "home" %}'>
+        <svg aria-labelledby='logoTitle logoDesc' id='headerLogoSvg' role='img' viewBox='0 0 820 200' xmlns='http://www.w3.org/2000/svg'>
+          <title id='logoTitle'>C² Sistemas</title>
+          <desc id='logoDesc'>Logotipo horizontal oficial da C² Sistemas</desc>
+          <defs>
+            <linearGradient id='logoOuterGrad' x1='0%' x2='100%' y1='100%' y2='0%'>
+              <stop offset='0%' stop-color='#00479e'/>
+              <stop offset='60%' stop-color='#0056b3'/>
+              <stop offset='100%' stop-color='#00d4ff'/>
+            </linearGradient>
+            <filter height='120%' id='logoShadow' width='120%' x='-10%' y='-10%'>
+              <feDropShadow dx='0' dy='4' flood-color='#000000' flood-opacity='0.15' stdDeviation='5'/>
+            </filter>
+          </defs>
+
+          <g filter='url(#logoShadow)' transform='translate(15, 0) scale(0.38)'>
+            <path d='M 303.5,150.4 A 130,130 0 1,0 303.5,349.6' fill='none' filter='url(#logoShadow)' stroke='url(#logoOuterGrad)' stroke-linecap='round' stroke-width='48'/>
+            <path d='M 355,120 C 355,95 405,95 405,120 C 405,138 355,158 355,180 L 405,180' fill='none' id='headerLogoExponent' opacity='0' stroke='url(#logoOuterGrad)' stroke-linecap='round' stroke-linejoin='round' stroke-width='18'/>
+          </g>
+
+          <g transform='translate(198, 0)'>
+            <text fill='#0b0f19' font-family='Courier New, Courier, monospace' font-size='52' font-weight='800' id='headerLogoText' letter-spacing='3' x='0' y='115'>SISTEMAS</text>
+            <text fill='#0056b3' font-family='Inter, Segoe UI, sans-serif' font-size='20' font-weight='800' id='headerLogoTagline' letter-spacing='4.5' opacity='0' x='3' y='160'>SOLUÇÕES EM TECNOLOGIA</text>
+          </g>
+        </svg>
+      </a>
+    </div>
+
+    <div class='nav-actions'>
+      <button aria-label='Abrir menu' class='menu-toggle' type='button'>
+        <i class='fas fa-bars'></i>
+      </button>
+
+      <ul class='nav-links' id='navLinks'>
+        <li><a href='{% url "home" %}'>Início</a></li>
+        <li><a href='{% url "software" %}'>Software</a></li>
+        <li><a href='{% url "infraestrutura" %}'>Infraestrutura & Cloud</a></li>
+        <li><a href='{% url "marketing" %}'>Marketing</a></li>
+        <!-- <li><a href='{% url "suporte" %}'>Suporte</a></li> -->
+      </ul>
+
+      <a class='btn-cta' href='{% url "contato" %}' rel='noopener'>Fale Conosco</a>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+     <p>&copy; 2026 C² - Sistemas. Todos os direitos reservados.</p>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+  <script src="{% static 'website/js/main.js' %}"></script>
+</body>
+</html>
